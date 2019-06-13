@@ -1,0 +1,32 @@
+{
+	"name": "fvapp1",
+	"version": "1.0.0",
+	"description": "Demo Node app 1",
+	"main": "nodeapp1start.js",
+	"scripts": {
+		"dev": "nodemon nodeapp1start.js",
+		"start": "node nodeapp1start.js"
+	},
+	"repository": {
+		"type": "git",
+		"url": ""
+	},
+	"dependencies": {
+		"body-parser": "^1.19.0",
+		"cors": "^2.8.5",
+		"dotenv": "^7.0.0",
+		"express": "^4.16.4",
+		"express-jwt": "*",
+		"mongoose": "^5.5.6",
+		"nodemon": "^1.19.0"
+	},
+	"keywords": [
+		"node",
+		"express"
+	],
+	"author": "Andrew Topel",
+	"license": "UNLICENSED",
+	"devDependencies": {
+		"eslint": "*"
+	}
+}

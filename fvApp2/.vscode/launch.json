@@ -1,0 +1,11 @@
+{
+	"version": "0.2.0",
+	"configurations": [
+		{
+			"type": "node",
+			"request": "launch",
+			"name": "Node2Test",
+			"program": "${workspaceFolder}/nodeapp2start.js",
+		}
+	]
+}
