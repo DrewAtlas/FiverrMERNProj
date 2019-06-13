@@ -5,7 +5,7 @@
 			"type": "node",
 			"request": "launch",
 			"name": "Node1 Test",
-			"program": "${workspaceFolder}/nodeapp1start.js",
+			"program": "${workspaceFolder}/nodeapp1start.js"
 		}
 	]
 }

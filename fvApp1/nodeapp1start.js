@@ -7,23 +7,25 @@
 */
 /* jshint esversion: 8 */
 /* globals require, process, exports */
-
+require("dotenv").config();
+let port = process.env.Test1_Port;
+if (!port)
+	throw new Exception("NO PORT!");
 // Get the express components ready
 const express = require("express");
 const bp = require("body-parser");
 const cors = require("cors");
-require("dotenv").config();
 
 function expressStartup(serverName, port)
 {
 	let app = express();
-
+	
 	app.use(cors());
 	app.use(bp.urlencoded({ extended: false }));
 	app.use(bp.json());
-
+	
 	app.use("/test1", require("./Test1Router"));
-
+	
 	app.listen(port, "0.0.0.0", err => 
 	{
 		if (err) console.error(err);
@@ -32,7 +34,10 @@ function expressStartup(serverName, port)
 }
 
 // Start up the test node app
-let port = process.env.Test1_Port;
+require("dotenv").config();
+//let port = process.env.Test1_Port;
+if (!port)
+	throw new Exception("NO PORT!");
 expressStartup("NodeTest1", port);
 
 

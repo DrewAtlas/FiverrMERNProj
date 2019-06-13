@@ -6,10 +6,8 @@ RepoDetails.txt
 [rR]edis/*Logs*
 
 # Individual project .env files should not be saved
-.env
-*Logs.txt
-*2019*
-AppOptions*
+#.env for the purposes of the demo/test - go ahead and save the .env file
+
 
 # User-specific files
 *.suo

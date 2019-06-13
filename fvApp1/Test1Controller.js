@@ -23,12 +23,13 @@ function testGet(req, res)
 exports.TestGet = testGet;
 
 // Implements the function routed here by /test1/contact
-function TestContact(req, res)
+function testContact(req, res)
 {
-	let msg = `testGet() Reached - Got here with ${req.method} on url ${req.originalUrl} path:${req.path}`;
+	let msg = `testContact() Reached - Got here with ${req.method} on url ${req.originalUrl} path:${req.path}`;
+	// Modify this to search and get a contact with passed ID
 	console.log(msg);
 	res.status(200).end(msg);
 }
-exports.TestGet = testGet;
-TestContact
+exports.TestContact = testContact;
+
 
