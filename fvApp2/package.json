@@ -1,15 +1,15 @@
 {
-	"name": "fvapp1",
+	"name": "fvapp2",
 	"version": "1.0.0",
-	"description": "Demo Node app 1",
-	"main": "nodeapp1start.js",
+	"description": "Demo Node app 2",
+	"main": "nodeapp2start.js",
 	"scripts": {
-		"dev": "nodemon nodeapp1start.js",
-		"start": "node nodeapp1start.js"
+		"dev": "nodemon nodeapp2start.js",
+		"start": "node nodeapp2start.js"
 	},
 	"repository": {
 		"type": "git",
-		"url": ""
+		"url": "https://github.com/DrewAtlas/FiverrMERNProj"
 	},
 	"dependencies": {
 		"body-parser": "^1.19.0",
@@ -17,7 +17,6 @@
 		"dotenv": "^7.0.0",
 		"express": "^4.16.4",
 		"express-jwt": "*",
-		"mongoose": "^5.5.6",
 		"nodemon": "^1.19.0"
 	},
 	"keywords": [

@@ -3,6 +3,7 @@
 				that acessing it from the public works
 	Author:	Drew Topel
 	Created: 6/9/19
+	Copyright (c) 2019 AtlasSoftwareServices. All Rights reserved
 */
 /* jshint esversion: 8 */
 /* globals require, process, exports */
@@ -11,6 +12,7 @@
 const express = require("express");
 const bp = require("body-parser");
 const cors = require("cors");
+require("dotenv").config();
 
 function expressStartup(serverName, port)
 {
@@ -20,7 +22,7 @@ function expressStartup(serverName, port)
 	app.use(bp.urlencoded({ extended: false }));
 	app.use(bp.json());
 
-	app.use("/test", require("./TestRouter"));
+	app.use("/test1", require("./Test1Router"));
 
 	app.listen(port, "0.0.0.0", err => 
 	{
@@ -30,7 +32,8 @@ function expressStartup(serverName, port)
 }
 
 // Start up the test node app
-expressStartup("NodeTest1", 3000);
+let port = process.env.Test1_Port;
+expressStartup("NodeTest1", port);
 
 
 
