@@ -8,10 +8,14 @@
 		},
 		{
 			"path": "Documentation"
+		},
+		{
+			"path": "website"
 		}
 	],
 	"settings": {
 	// The path of the shell that the terminal uses on Windows. When using shells shipped with Windows (cmd, PowerShell or Bash on Ubuntu), prefer C:\Windows\sysnative over C:\Windows\System32 to use the 64-bit versions.
 	"terminal.integrated.shell.windows": "C:\\Windows\\system32\\cmd.exe",
+	"liveServer.settings.multiRootWorkspaceName": "website",
 	}
 }
