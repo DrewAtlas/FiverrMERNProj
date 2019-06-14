@@ -59,24 +59,28 @@ exports.Save = function (details)
 	contact.save().then(function (data)
 	{
 		let msg = `Successfully created and stored new contact ${contact.mName} in db ${contactDbName}`;
-		gLog(msg, gLevels.Info, "CM1040");
+		gLog(msg, gLevels.Info, "CM1000");
 		return contact;
 	}).catch(function (errData)
 	{
 		let msg = `Error ${errData.message} when trying to save new contact ${contact.mName} in db ${contactDbName}`;
-		gLog(msg, gLevels.Error, "CM1060");
+		gLog(msg, gLevels.Error, "CM1020");
 	});	
 };
 
 // Execute a find for a contact object using the criteria in the findObj
 exports.Load = function (findobj) 
 {
-	gMongo.db.collection(contactDbName).findOne(findobj), function (err, result)
+	let findQ = gContactModelDataType.findOne(findobj);
+	let aPromise = findQ.exec();	// This returns an actual promise, findQ is not one
+	aPromise.then(function (foundDoc)
 	{
-		if (err)
-			throw err;
-		return result;
-	}
+		return foundDoc;
+	}).catch(function (errData) 
+	{
+		let msg = `Error ${errData.message} when trying to fomd contact ${findobj.mName} in db ${contactDbName}`;
+		gLog(msg, gLevels.Error, "CM1040");
+	});
 };
 
 exports.LoadAll = function ()
