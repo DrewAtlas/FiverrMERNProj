@@ -9,8 +9,8 @@ var gTestCont = require("./Test1Controller");
 var express = require("express");
 var router = express.Router();
 
-router.post("/posting", gTestCont.TestPost);
 router.get("/getting", gTestCont.TestGet);
 router.get("/contact", gTestCont.TestContact);
+router.post("/posting", gTestCont.TestPost);
 
 module.exports = router;

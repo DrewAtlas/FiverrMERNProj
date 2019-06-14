@@ -5,10 +5,18 @@
 	Copyright (c) 2019 AtlasSoftwareServices. All Rights reserved
 */
 
+/* createTestSet()
+	Purpose:	Create a test button in the interface consisting of a container Div in which
+				we have a button (class="playBut") and an output div (class="outFld"). The
+				button has a unique id that also contains the informatoin needed to target the
+				correct function on the server when hit. See the .click() function for more on that
+	Inputs:		the set to which the button belongs (1 or 2),
+				the type of operation that the button is designed to do ("get" or "post")
+	Returns:	the markup for this button and text output as described.
+*/
 function createTestSet(set, abut)
 {
-	return `<div class="colContainer"><div id="a${set}${abut}" class="playBut">App ${set} Test ${abut}</div><div id="out${set}${abut}" class="outFld"></div></div>`;
-
+	return `<div class="colContainer"><div id="a${set}${abut}" class="playBut fields">App ${set} Test ${abut}</div><div id="out${set}${abut}" class="outFld fields"></div></div>`;
 }
 
 // Stand-in for log levels
@@ -20,10 +28,12 @@ function gLog(msg, level, code, cat)
 }
 
 /* ServerCall()
-	Purpose:	Perform a call to a node server
+	Purpose:	Perform a call to a node server that is set up specifically for the tests we are performing here.
+				They are numbered 1 and 2 and the calls that they perform also have this number designation.
 	Inputs:		the number of the server to call (1,2)
+				the route of call (i.e. the final route after the /test1, e.g. 'getting' - what is in testRouter.js
 				the type of call to make ("Get", "Post")
-				<optional> data to send
+				<optional> data to send (if it is a post)
 	Returns:	a promise that is fulfilled or rejected based on the call results
 */
 var gLastUrl;
@@ -31,9 +41,9 @@ function ServerCall(serverNum, route, theType, inputData)
 {
 	// Based on the server number we know the URL and the port
 	let host = "localhost";
-	let port = 3000;
+	let ports = [3100, 4100];	// Hard code in the ports for now...
 	let func = `test${serverNum}/${route}`;
-	let url = `http://${host}:${port}/${func}`;
+	let url = `http://${host}:${ports[serverNum-1]}/${func}`;
 	gLastUrl = url;
 
 	let jqxhr;
@@ -46,7 +56,7 @@ function ServerCall(serverNum, route, theType, inputData)
 				jqxhr = $.get(url, resolve);
 				break;
 			case "post":
-				jqxhr = $.post(url, inputData, resultCb);
+				jqxhr = $.post(url, inputData, resolve);
 				break;
 		}
 
@@ -77,12 +87,12 @@ function SetupTestButs()
 	
 	let html = '<label class="columnTitle">App1 Controls</label>';
 	buts.forEach(function (abut)
-	{
+	{	// Setup test buttons for fvApp1 callbacks
 		html += createTestSet(1, abut);
 	});
 	html += '<label class="columnTitle">App2 Controls</label>';
 	buts2.forEach(function (abut)
-	{
+	{	// Test buttons for fvApp2
 		html += createTestSet(2, abut);
 	});
 	$("#MainContent").html(html);
@@ -118,7 +128,7 @@ function SetupTestButs()
 			ShowResult("Good Data: " + data, gLevels.Trace, outName);
 		}).catch(function (errData)
 		{
-			ShowResult(`${errData.statusText} Comms to url: ${gLastUrl} Failed`, gLevels.Error, outName);
+			ShowResult(`${errData.message} Comms to url: ${gLastUrl} Failed`, gLevels.Error, outName);
 		});
 	});
 }

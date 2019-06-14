@@ -96,5 +96,5 @@ function DatabaseConnect()
 }
 
 exports.DatabaseConnect = DatabaseConnect;
-
+exports.db = gMongoDbConn;
 
