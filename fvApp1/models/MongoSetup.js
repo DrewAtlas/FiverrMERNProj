@@ -23,11 +23,11 @@ function gLog(msg, level, code, cat)
 // Construct the URI to the database using either details in the .env file or ... not
 function GetMongooseConnectionUrl()
 {
-	// Set up mongoose connection
-	const dbBase = process.env.MONGOOSE_URL || "mongodb+srv://aUser:aUserPw@atlastestcluster-v2sdl.mongodb.net/";
-	// Put the database name and parameters separate so that I can use a different DB later...
-	const dbName = process.env.MONGOOSE_DBNAME || "Demo";
-	const dbParams = process.env.MONGOOSE_PARAMS || "?retryWrites=true";
+        // Set up mongoose connection
+        const dbBase = process.env.MONGOOSE_URL || "mongodb://aUser:aUserPw@127.0.0.1/";
+        // Put the database name and parameters separate so that I can use a different DB later...
+        const dbName = process.env.MONGOOSE_DBNAME || "Demo";
+        const dbParams = process.env.MONGOOSE_PARAMS || "?retryWrites=true";
 
 	return dbBase + dbName + dbParams;
 }
