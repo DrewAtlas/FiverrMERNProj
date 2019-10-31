@@ -17,7 +17,7 @@
 		"dotenv": "^7.0.0",
 		"express": "^4.16.4",
 		"express-jwt": "*",
-		"mongoose": "^5.5.6",
+		"mongoose": "^5.7.5",
 		"chance": "*",
 		"nodemon": "^1.19.0"
 	},
